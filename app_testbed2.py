@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import io
 from datetime import date
+import time
 
 # This is the CSS to hide the vertical scrollbar and allow the table to expand.
 # We're trying a different selector that might be more robust.
@@ -399,3 +400,10 @@ if st.session_state.results:
     )
 else:
     st.info("Calculate the results first to enable the download button.")
+
+# --- Keep-Alive Fragment ---
+# This fragment reruns every 5 minutes to keep the session active.
+with st.empty():
+    st.markdown("---")
+    st.info("Keep-alive active. This app will not time out as long as this page is open.")
+    st.fragment(run_every="5m")
